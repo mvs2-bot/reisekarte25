@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <title>Stefan_Reisekarte_CESIUM_GLOBUS_DETAILLIERT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Widgets/widgets.css">
+    
+    <style>
+        html, body, #cesiumContainer { height: 100%; margin:0; padding:0; overflow:hidden; }
+        /* CSS für die Legende (optional, falls benötigt) */
+        .cesium-widget-credits { display: none !important; } /* Credits unten rechts ausblenden, falls störend */
+    </style>
+</head>
+<body>
+    <div id="cesiumContainer"></div>
+
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Cesium.js"></script>
+    
+    <script>
+        // Ihr Access Token
+        const CESIUM_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0YTkzZjgyYy1lNjY3LTRjYzAtYWYzMzAtMjliNjg5MDJmYTYxIiwiaWQiOjM1MDA0NywiaWF0IjoxNzYwMzYxODM5fS5hcDN6QU1GX0s4RVhhZTFiWmRyRHR6Ujhhc3c1TmxsNkY0cmRrdkhvWVk";
+        Cesium.Ion.defaultAccessToken = CESIUM_TOKEN;
+
+        // Farben für Phasen (umgewandelt in Cesium.Color-Objekte)
+        const colors = {
+            "Thailand": Cesium.Color.fromCssColorString("#d4af37"), // Gold
+            "Vietnam": Cesium.Color.fromCssColorString("#2e8b57"), // Waldgrün
+            "Japan": Cesium.Color.fromCssColorString("#c62828"), // Dunkelrot
+            "Anreise": Cesium.Color.fromCssColorString("#666666"), // Grau (für Flüge)
+            "Rueckflug": Cesium.Color.fromCssColorString("#666666") // Grau
+        };
+        const defaultColor = Cesium.Color.fromCssColorString("#666666");
+
+        // Stationsliste (Die detaillierte Liste aus Ihrem Leaflet-Code)
+        const stations = [
+            { name: "München (Abflug)", lat: 48.1351, lon: 11.5820, phase: "Anreise", date: "06.11.2025", note: "Abflug MUC 21:25" },
+            { name: "Dubai (Zwischenstopp)", lat: 25.2532, lon: 55.2798, phase: "Anreise", date: "07.11.2025", note: "Zwischenstopp DXB (nur Pfad)" }, 
+            { name: "Bangkok (Tag 1)", lat: 13.7563, lon: 100.5018, phase: "Thailand", date: "08.11.2025", note: "Bangkok - Königspalast & Tempel" },
+            { name: "Bangkok (Tag 2)", lat: 13.7563, lon: 100.5018, phase: "Thailand", date: "09.11.2025", note: "Bangkok - Märkte & Kultur" },
+            { name: "Bangkok (Tag 3)", lat: 13.7563, lon: 100.5018, phase: "Thailand", date: "10.11.2025", note: "Tag in Bangkok · Abends Reise nach Chiang Mai" },
+            { name: "Chiang Mai (Ankunft)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "11.11.2025", note: "Chiang Mai - erster Abend" },
+            { name: "Chiang Mai (Tag 1)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "12.11.2025", note: "Chiang Mai - Tempel, Altstadt" },
+            { name: "Pai (Ausflug)", lat: 19.3591, lon: 98.4371, phase: "Thailand", date: "13.11.2025", note: "Tagesausflug zur Pai Canyon / Reisterrassen" }, 
+            { name: "Chiang Rai (Ausflug)", lat: 19.9056, lon: 99.8306, phase: "Thailand", date: "14.11.2025", note: "Tagesausflug zum Weißen Tempel (Wat Rong Khun)" }, 
+            { name: "Chiang Mai (Tag 2)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "15.11.2025", note: "Chiang Mai - Doi Inthanon" },
+            { name: "Chiang Mai (Abreisevorbereitung)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "16.11.2025", note: "Letzte Erledigungen" },
+            { name: "Reise nach Hanoi", lat: 18.7883, lon: 98.9853, phase: "Anreise", date: "17.11.2025", note: "Flug CNX → HAN (geplant)" },
+            { name: "Hanoi - Vorbereitung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "18.11.2025", note: "Hanoi - Vorbereitung Ha Giang Loop" },
+            { name: "Ha Giang - Loop Start", lat: 22.7900, lon: 104.9850, phase: "Vietnam", date: "19.11.2025", note: "Start Ha Giang Loop (Tag 1)" },
+            { name: "Ha Giang - Loop (Tag 2 / Quyết Tiến)", lat: 23.1300, lon: 105.1000, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Quyết Tiến / Dong Van)" }, 
+            { name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 23.2300, lon: 105.4200, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mèo Vạc / Ma Pi Leng Pass)" }, 
+            { name: "Ha Giang - Loop Ende", lat: 22.7900, lon: 104.9850, phase: "Vietnam", date: "22.11.2025", note: "Ende Ha Giang Loop (Zurück nach Ha Giang)" },
+            { name: "Hanoi - Erholung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "23.11.2025", note: "Erholung in Hanoi" },
+            { name: "Halong-Bucht - Kreuzfahrt (Tag 1)", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "24.11.2025", note: "Halong-Bucht - Kreuzfahrt (Tag 1)" },
+            { name: "Halong-Bucht - Rückkehr", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "25.11.2025", note: "Halong-Bucht - Rückkehr" },
+            { name: "Tagesausflug Ninh Binh", lat: 20.2500, lon: 105.9745, phase: "Vietnam", date: "26.11.2025", note: "Tam Coc / Mua Cave" },
+            { name: "Hanoi - normaler Tag", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "27.11.2025", note: "Hanoi - Erkundung" },
+            { name: "Hanoi - Abreisevorbereitung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "28.11.2025", note: "Vorbereitung Weiterreise" },
+            { name: "Reise nach Ho-Chi-Minh-Stadt", lat: 21.0285, lon: 105.8542, phase: "Anreise", date: "29.11.2025", note: "Inlandsflug nach SGN" },
+            { name: "Ho-Chi-Minh-Stadt", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "30.11.2025", note: "HCMC - Stadt & Leben" },
+            { name: "Mekong-Delta (Tagesausflug)", lat: 10.0452, lon: 105.7715, phase: "Vietnam", date: "01.12.2025", note: "Mekong-Delta Tagestour" },
+            { name: "Ho-Chi-Minh-Stadt - normal", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "02.12.2025", note: "HCMC - Freizeit" },
+            { name: "HCMC - Abreisevorbereitung", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "03.12.2025", note: "Packen, Checklisten" },
+            { name: "HCMC - Puffertag", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "04.12.2025", note: "Reserve / Puffer" },
+            { name: "HCMC (Abflug nach Tokio)", lat: 10.7629, lon: 106.6606, phase: "Anreise", date: "05.12.2025", note: "Nachtflug SGN 23:55 → NRT" }, 
+            { name: "Tokio (Ankunft NRT)", lat: 35.7719, lon: 140.3929, phase: "Japan", date: "06.12.2025", note: "Ankunft NRT 07:35 · Asakusa / Ueno" },
+            { name: "Tokio - Tag 2", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "07.12.2025", note: "Tokio erkunden" },
+            { name: "Nikkō (Tagesausflug)", lat: 36.7199, lon: 139.6983, phase: "Japan", date: "08.12.2025", note: "Toshogu-Schrein & Natur" },
+            { name: "Nagano / Yudanaka", lat: 36.6486, lon: 138.1948, phase: "Japan", date: "09.12.2025", note: "Jigokudani / Schneeaffen" },
+            { name: "Matsumoto", lat: 36.2381, lon: 137.9717, phase: "Japan", date: "10.12.2025", note: "Matsumoto-Schloss" },
+            { name: "Takayama", lat: 36.1456, lon: 137.2520, phase: "Japan", date: "11.12.2025", note: "Altstadt & Markt" },
+            { name: "Shirakawa-go", lat: 36.2706, lon: 136.8996, phase: "Japan", date: "12.12.2025", note: "Gassho-Zukuri Bauernhäuser" },
+            { name: "Kanazawa", lat: 36.5613, lon: 136.6562, phase: "Japan", date: "13.12.2025", note: "Kenroku-en Garten, Samuraiviertel" },
+            { name: "Kanazawa / Noto (optional)", lat: 37.4560, lon: 137.3618, phase: "Japan", date: "14.12.2025", note: "Noto-Halbinsel (Küste) optional" },
+            { name: "Kyoto (Teil I)", lat: 35.0116, lon: 135.7681, phase: "Japan", date: "15.12.2025", note: "Kyoto - Fushimi Inari, Gion" },
+            { name: "Kyoto (Teil II)", lat: 35.0116, lon: 135.7681, phase: "Japan", date: "16.12.2025", note: "Kyoto - Philosophenweg & Tempel" },
+            { name: "Nara (Tagesausflug)", lat: 34.6851, lon: 135.8048, phase: "Japan", date: "17.12.2025", note: "Todai-ji & Hirschpark" },
+            { name: "Kyoto → Osaka (Abend)", lat: 34.6937, lon: 135.5023, phase: "Japan", date: "18.12.2025", note: "Abendliche Fahrt nach Osaka" },
+            { name: "Osaka", lat: 34.6937, lon: 135.5023, phase: "Japan", date: "19.12.2025", note: "Dotonbori, Streetfood" },
+            { name: "Tokio (Rückkehr)", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "20.12.2025", note: "Shinkansen zurück nach Tokio" },
+            { name: "Tokio - Abschiedstag", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "21.12.2025", note: "Letzte Einkäufe & Packen" },
+            { name: "Tokio (Abflug HND)", lat: 35.5494, lon: 139.7798, phase: "Anreise", date: "22.12.2025", note: "Abflug HND 21:00 → MUC" }, 
+            { name: "Peking (Zwischenstopp)", lat: 39.9042, lon: 116.4074, phase: "Anreise", date: "22.12.2025", note: "Zwischenstopp PEK (nur Pfad)" },
+            { name: "München (Ankunft)", lat: 48.1351, lon: 11.5820, phase: "Rueckflug", date: "23.12.2025", note: "Ankunft MUC" }
+        ];
+
+
+        // 1. Viewer initialisieren und OSM erzwingen
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            // Keine Standard-Layer-Auswahl, um Fehler zu vermeiden
+            baseLayerPicker: false, 
+            baseLayer: false,
+            // Terrain deaktiviert
+            terrainProvider: new Cesium.EllipsoidTerrainProvider(), 
+            
+            animation: false,
+            timeline: false,
+            geocoder: false,
+            sceneModePicker: false,
+            navigationHelpButton: false,
+            infoBox: true, 
+            fullscreenButton: true,
+        });
+
+        // FIX: Entferne ALLE Standard-Layer, die Cesium möglicherweise geladen hat
+        viewer.imageryLayers.removeAll();
+
+        // Füge OpenStreetMap als EINEN Layer hinzu
+        viewer.imageryLayers.addImageryProvider(
+            new Cesium.OpenStreetMapImageryProvider({
+                url: 'https://a.tile.openstreetmap.org/', 
+                fileExtension: 'png',
+                credit: '© OpenStreetMap contributors' 
+            })
+        );
+        
+        const entities = viewer.entities;
+        let previousPosition = null;
+        let previousPhase = null;
+
+        // 2. Linien und Punkte hinzufügen
+        stations.forEach((s, idx) => {
+            const phase = s.phase in colors ? s.phase : "Anreise";
+            const currentColor = colors[phase];
+            
+            // Setze die Position 50 km über dem Boden (um CLAMP_TO_GROUND-Fehler zu vermeiden)
+            const currentPosition = Cesium.Cartesian3.fromDegrees(s.lon, s.lat, 50000.0);
+            
+            
+            // --- MARKER HINZUFÜGEN ---
+            // Marker nur für *relevante* Punkte setzen, nicht für reine Zwischenstopps (Logik aus Leaflet übernommen)
+            if (!s.note.includes("(nur Pfad)")) {
+                
+                const description = `
+                    <h3>${s.name}</h3>
+                    <p>
+                        <small>Phase: ${s.phase}</small><br>
+                        <b>Datum: ${s.date}</b><br>
+                        <i>${s.note}</i>
+                    </p>
+                    <hr style='margin:6px 0'>
+                    <small>Reihenfolge: ${idx+1} / ${stations.length}</small>
+                `;
+
+                entities.add({
+                    position: currentPosition,
+                    point: {
+                        pixelSize: 10,
+                        color: currentColor,
+                        outlineColor: Cesium.Color.BLACK,
+                        outlineWidth: 2,
+                    },
+                    description: description,
+                    name: s.name
+                });
+            }
+
+            // --- SEGMENT LINIE HINZUFÜGEN ---
+            if (previousPosition) {
+                const isFlightSegment = (s.phase === "Anreise" || s.phase === "Rueckflug" || previousPhase === "Anreise");
+                
+                // Farbe: Grau für Flüge, Phasen-Farbe für Boden-Segmente
+                const segmentColor = isFlightSegment ? defaultColor : currentColor;
+
+                // Gestrichelte Linie für Flüge
+                const lineStyle = isFlightSegment 
+                    ? new Cesium.PolylineDashMaterialProperty({
+                        color: segmentColor, 
+                        dashLength: 10.0,
+                    }) 
+                    : segmentColor;
+
+                entities.add({
+                    name: `Segment: ${previousPhase} → ${s.name}`,
+                    polyline: {
+                        positions: [previousPosition, currentPosition],
+                        width: 3,
+                        material: lineStyle,
+                        // Flüge als Bogen (Arc) über die Erdkugel, Landrouten gerade (NONE)
+                        arcType: isFlightSegment ? Cesium.ArcType.GEODESIC : Cesium.ArcType.NONE,
+                        clampToGround: false // Wir nutzen die Höhe von 50km, daher nicht am Boden fixieren
+                    }
+                });
+            }
+            
+            previousPosition = currentPosition;
+            previousPhase = s.phase;
+        });
+
+
+        // 3. Auf die Gesamtroute zoomen
+        
+        // Finde die Bounding Box der relevanten Punkte (ohne Zwischenstopps)
+        const relevantStations = stations.filter(s => !s.note.includes("(nur Pfad)"));
+        const rect = Cesium.Rectangle.fromDegrees(
+            Math.min(...relevantStations.map(s => s.lon)) - 5,
+            Math.min(...relevantStations.map(s => s.lat)) - 5,
+            Math.max(...relevantStations.map(s => s.lon)) + 5,
+            Math.max(...relevantStations.map(s => s.lat)) + 5
+        );
+        
+        viewer.camera.flyTo({
+            destination: rect, // Zoome auf die Bounding Box
+            duration: 4, 
+            complete: function() {
+                // Feineinstellung des Blicks, sobald die Animation abgeschlossen ist
+                viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+            }
+        });
+        
+    </script>
+</body>
+</html>
