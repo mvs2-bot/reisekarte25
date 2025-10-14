@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -83,21 +84,28 @@
         const stations = [
             { name: "München (Abflug)", lat: 48.340993848205116, lon: 11.776813638446827, phase: "Anreise", date: "06.11.2025", note: "Abflug MUC 21:25" },
             { name: "Dubai (Zwischenstopp)", lat: 25.2532, lon: 55.2798, phase: "Anreise", date: "07.11.2025", note: "Zwischenstopp DXB (nur Pfad)" }, 
-            { name: "Bangkok (Tag 1)", lat: 13.763240766438173, lon: 100.49687501809402, phase: "Thailand", date: "08.11.2025", note: "Bangkok - Königspalast & Tempel" },
+           
+		   { name: "Bangkok (Tag 1)", lat: 13.763240766438173, lon: 100.49687501809402, phase: "Thailand", date: "08.11.2025", note: "Bangkok - Königspalast & Tempel" },
             { name: "Bangkok (Tag 2)", lat: 13.799670117646631, lon: 100.55058974890065, phase: "Thailand", date: "09.11.2025", note: "Bangkok - Märkte & Kultur" },
             { name: "Bangkok (Tag 3)", lat: 13.749884779840412, lon: 100.49149841021426, phase: "Thailand", date: "10.11.2025", note: "Tag in Bangkok · Abends Reise nach Chiang Mai" },
+			
             { name: "Chiang Mai (Ankunft)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "11.11.2025", note: "Chiang Mai - erster Abend" },
             { name: "Chiang Mai (Tag 1)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "12.11.2025", note: "Chiang Mai - Tempel, Altstadt" },
             { name: "Pai (Ausflug)", lat: 19.3591, lon: 98.4371, phase: "Thailand", date: "13.11.2025", note: "Tagesausflug zur Pai Canyon / Reisterrassen" }, 
             { name: "Chiang Rai (Ausflug)", lat: 19.9056, lon: 99.8306, phase: "Thailand", date: "14.11.2025", note: "Tagesausflug zum Weißen Tempel (Wat Rong Khun)" }, 
             { name: "Chiang Mai (Tag 2)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "15.11.2025", note: "Chiang Mai - Doi Inthanon" },
             { name: "Chiang Mai (Abreisevorbereitung)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "16.11.2025", note: "Letzte Erledigungen" },
+			
             { name: "Reise nach Hanoi", lat: 18.7883, lon: 98.9853, phase: "Anreise", date: "17.11.2025", note: "Flug CNX → HAN (geplant)(nur Pfad)" },
             { name: "Hanoi - Vorbereitung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "18.11.2025", note: "Hanoi - Vorbereitung Ha Giang Loop" },
-            { name: "Ha Giang - Loop Start", lat: 22.7900, lon: 104.9850, phase: "Vietnam", date: "19.11.2025", note: "Start Ha Giang Loop (Tag 1)" },
-            { name: "Ha Giang - Loop (Tag 2 / Quyết Tiến)", lat: 23.1300, lon: 105.1000, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Quyết Tiến / Dong Van)" }, 
-            { name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 23.2300, lon: 105.4200, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mèo Vạc / Ma Pi Leng Pass)" }, 
-            { name: "Ha Giang - Loop Ende", lat: 22.7900, lon: 104.9850, phase: "Vietnam", date: "22.11.2025", note: "Ende Ha Giang Loop (Zurück nach Ha Giang)" },
+			
+            { name: "Ha Giang - Loop Start", lat: 22.823920371777376, lon: 104.98295252092034, phase: "Vietnam", date: "19.11.2025", note: "Start Ha Giang Loop (Tag 1)" },
+            { name: "Ha Giang - Loop (Tag 2 / Yên Minh)", lat: 23.118168865103783, lon: 105.1419173143215, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Yên Minh / Dong Van Stadt)" }, 
+			{ name: "Ha Giang - Loop (Tag 2 / Yên Minh)", lat: 23.2766762788041, lon: 105.36348707190537, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Yên Minh / Dong Van Stadt)" }, 
+            { name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 23.240896853685353, lon: 105.40094881658648, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mã Pí Lèng Pass / Du Gia Dorf)" }, 
+			{ name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 22.933925774563075, lon: 105.2019653494305, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mã Pí Lèng Pass / Du Gia Dorf)" }, 
+            { name: "Ha Giang - Loop Ende", lat: 22.817646497016938, lon: 104.98939246256222, phase: "Vietnam", date: "22.11.2025", note: "Ende Ha Giang Loop (Zurück nach Ha Giang)" },
+		
             { name: "Hanoi - Erholung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "23.11.2025", note: "Erholung in Hanoi" },
             { name: "Halong-Bucht - Kreuzfahrt (Tag 1)", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "24.11.2025", note: "Halong-Bucht - Kreuzfahrt (Tag 1)" },
             { name: "Halong-Bucht - Rückkehr", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "25.11.2025", note: "Halong-Bucht - Rückkehr" },
