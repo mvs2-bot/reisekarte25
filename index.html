@@ -292,8 +292,8 @@ const relevantStations = stations.filter(s => !s.note.includes("(nur Pfad)"));
 
 // Hier bleibt deine Berechnung für das Rechteck der gesamten Route (Zielort)
 const rect = Cesium.Rectangle.fromDegrees(
-    Math.min(...relevantStations.map(s => s.lon)) + 50,
-    Math.min(...relevantStations.map(s => s.lat)) - 10,
+    Math.min(...relevantStations.map(s => s.lon)) + 36,
+    Math.min(...relevantStations.map(s => s.lat)) - 15,
     Math.max(...relevantStations.map(s => s.lon)) + 5,
     Math.max(...relevantStations.map(s => s.lat)) + 5
 );
@@ -326,3 +326,4 @@ viewer.camera.flyTo({
     </script>
 </body>
 </html>
+
