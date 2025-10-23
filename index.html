@@ -84,50 +84,67 @@
         const stations = [
             { name: "München (Abflug)", lat: 48.340993848205116, lon: 11.776813638446827, phase: "Anreise", date: "06.11.2025", note: "Abflug MUC 21:25" },
             { name: "Dubai (Zwischenstopp)", lat: 25.2532, lon: 55.2798, phase: "Anreise", date: "07.11.2025", note: "Zwischenstopp DXB (nur Pfad)" }, 
-           
-		   { name: "Bangkok (Tag 1)", lat: 13.763240766438173, lon: 100.49687501809402, phase: "Thailand", date: "08.11.2025", note: "Bangkok - Königspalast & Tempel" },
-            { name: "Bangkok (Tag 2)", lat: 13.799670117646631, lon: 100.55058974890065, phase: "Thailand", date: "09.11.2025", note: "Bangkok - Märkte & Kultur" },
-            { name: "Bangkok (Tag 3)", lat: 13.749884779840412, lon: 100.49149841021426, phase: "Thailand", date: "10.11.2025", note: "Tag in Bangkok · Abends Reise nach Chiang Mai" },
-			
-            { name: "Chiang Mai (Ankunft)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "11.11.2025", note: "Chiang Mai - erster Abend" },
-            { name: "Chiang Mai (Tag 1)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "12.11.2025", note: "Chiang Mai - Tempel, Altstadt" },
+            { name: "Dubai (Zwischenstopp)", lat: 25.2532, lon: 55.2798, phase: "Anreise", date: "07.11.2025", note: "Zwischenstopp DXB" }, 
+
+            { name: "Bangkok (Ankunft)", lat: 13.683373808324879, lon: 100.74533566867456, phase: "Thailand", date: "07.11.2025", note: "Bangkok - Ankunft" },
+		        { name: "Bangkok (Tag 1)", lat: 13.763240766438173, lon: 100.49687501809402, phase: "Thailand", date: "08.11.2025", note: "Bangkok - Königspalast & Tempel" },
+            { name: "Bangkok (Tag 2)", lat: 13.749884779840412, lon: 100.49149841021426, phase: "Thailand", date: "09.11.2025", note: "Tag in Bangkok" },
+            { name: "Bangkok (Tag 3)", lat: 13.799670117646631, lon: 100.55058974890065, phase: "Thailand", date: "10.11.2025", note: "Bangkok - Märkte & Kultur" },
+			      { name: "Bangkok (Tag 4)", lat: 13.80302300360065, lon: 100.54180898742268, phase: "Thailand", date: "11.11.2025", note: "Abends Reise nach Chiang Mai" },
+
+            { name: "Chiang Mai (Ankunft & Tag 1)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "12.11.2025", note: "Chiang Mai" },
             { name: "Pai (Ausflug)", lat: 19.3591, lon: 98.4371, phase: "Thailand", date: "13.11.2025", note: "Tagesausflug zur Pai Canyon / Reisterrassen" }, 
             { name: "Chiang Rai (Ausflug)", lat: 19.9056, lon: 99.8306, phase: "Thailand", date: "14.11.2025", note: "Tagesausflug zum Weißen Tempel (Wat Rong Khun)" }, 
             { name: "Chiang Mai (Tag 2)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "15.11.2025", note: "Chiang Mai - Doi Inthanon" },
-            { name: "Chiang Mai (Abreisevorbereitung)", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "16.11.2025", note: "Letzte Erledigungen" },
-			
-            { name: "Reise nach Hanoi", lat: 18.7883, lon: 98.9853, phase: "Anreise", date: "17.11.2025", note: "Flug CNX → HAN (geplant)(nur Pfad)" },
-            { name: "Hanoi - Vorbereitung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "18.11.2025", note: "Hanoi - Vorbereitung Ha Giang Loop" },
-			
-            { name: "Ha Giang - Loop Start", lat: 22.823920371777376, lon: 104.98295252092034, phase: "Vietnam", date: "19.11.2025", note: "Start Ha Giang Loop (Tag 1)" },
-            { name: "Ha Giang - Loop (Tag 2 / Yên Minh)", lat: 23.118168865103783, lon: 105.1419173143215, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Yên Minh / Dong Van Stadt)" }, 
-			{ name: "Ha Giang - Loop (Tag 2 / Yên Minh)", lat: 23.2766762788041, lon: 105.36348707190537, phase: "Vietnam", date: "20.11.2025", note: "Ha Giang Loop (Yên Minh / Dong Van Stadt)" }, 
-            { name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 23.240896853685353, lon: 105.40094881658648, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mã Pí Lèng Pass / Du Gia Dorf)" }, 
-			{ name: "Ha Giang - Loop (Tag 3 / Mèo Vạc)", lat: 22.933925774563075, lon: 105.2019653494305, phase: "Vietnam", date: "21.11.2025", note: "Ha Giang Loop (Mã Pí Lèng Pass / Du Gia Dorf)" }, 
-            { name: "Ha Giang - Loop Ende", lat: 22.817646497016938, lon: 104.98939246256222, phase: "Vietnam", date: "22.11.2025", note: "Ende Ha Giang Loop (Zurück nach Ha Giang)" },
-		
-            { name: "Hanoi - Erholung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "23.11.2025", note: "Erholung in Hanoi" },
-            { name: "Halong-Bucht - Kreuzfahrt (Tag 1)", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "24.11.2025", note: "Halong-Bucht - Kreuzfahrt (Tag 1)" },
-            { name: "Halong-Bucht - Rückkehr", lat: 20.9101, lon: 107.1839, phase: "Vietnam", date: "25.11.2025", note: "Halong-Bucht - Rückkehr" },
-            { name: "Tagesausflug Ninh Binh", lat: 20.2500, lon: 105.9745, phase: "Vietnam", date: "26.11.2025", note: "Tam Coc / Mua Cave" },
-            { name: "Hanoi - normaler Tag", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "27.11.2025", note: "Hanoi - Erkundung" },
-            { name: "Hanoi - Abreisevorbereitung", lat: 21.0285, lon: 105.8542, phase: "Vietnam", date: "28.11.2025", note: "Vorbereitung Weiterreise" },
-            { name: "Reise nach Ho-Chi-Minh-Stadt", lat: 21.0285, lon: 105.8542, phase: "Anreise", date: "29.11.2025", note: "Inlandsflug nach SGN (nur Pfad)" },
-            { name: "Ho-Chi-Minh-Stadt", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "30.11.2025", note: "HCMC - Stadt & Leben" },
+            { name: "Chiang Mai", lat: 18.7883, lon: 98.9853, phase: "Thailand", date: "12.11. - 17.11.2025", note: "" },
+			      { name: "Reise nach Hanoi", lat: 18.769252922620847, lon: 98.96822128652073, phase: "Thailand", date: "17.11.2025", note: "Flug CNX → HAN (geplant)" },
+            { name: "Reise nach Hanoi", lat: 18.769252922620847, lon: 98.96822128652073, phase: "Anreise", date: "17.11.2025", note: "Flug CNX → HAN (geplant)(nur Pfad)" },
+            { name: "Hanoi - Ankunft Flughafen", lat: 21.215124876585346, lon: 105.7917607470519, phase: "Vietnam", date: "17.11.2025", note: "" },
+          
+			      { name: "Hanoi - Transfer zum Ha Giang Loop", lat: 21.031970787461425, lon: 105.85601632416406, phase: "Vietnam", date: "17.11.2025", note: "Hier ist der Abreise und Ankunftpunkt für den Ha Giang Loop" },
+            { name: "Ha Giang - Loop Start/Ende", lat: 22.811999199152176, lon: 104.98030886187692, phase: "Vietnam", date: "18.11.2025", note: "Start Ha Giang Loop (Tag 1)" },
+                     
+            { name: "Ha Giang - Loop (Tag 1)", lat: 23.065474777670357, lon: 104.98990012798492, phase: "Vietnam", date: "18.11.2025", note: "Tam Son" }, 
+            { name: "Ha Giang - Loop (Tag 1)", lat: 23.11813541527327, lon: 105.14090967687244, phase: "Vietnam", date: "18.11.2025", note: "Yen Minh" }, 
+            { name: "Ha Giang - Loop (Tag 2)", lat: 23.360922597069745, lon: 105.31648251712683, phase: "Vietnam", date: "19.11.2025", note: "Lung Cu" }, 
+            { name: "Ha Giang - Loop (Tag 2)", lat: 23.277894276033436, lon: 105.36200664762825, phase: "Vietnam", date: "19.11.2025", note: "Dong Van" }, 
+            { name: "Ha Giang - Loop (Tag 3)", lat: 23.240088289069355, lon: 105.39976398726468, phase: "Vietnam", date: "20.11.2025", note: "Ma Pi Leng" }, 
+            { name: "Ha Giang - Loop (Tag 3)", lat: 23.16358152523016, lon: 105.40795843793222, phase: "Vietnam", date: "20.11.2025", note: "Meo Vac" }, 
+            { name: "Ha Giang - Loop (Tag 3)", lat: 23.06616240565967, lon: 105.24272608808627, phase: "Vietnam", date: "20.11.2025", note: "Mau Due" }, 
+	      		{ name: "Ha Giang - Loop (Tag 4)", lat: 22.926820884032303, lon: 105.19988740038242, phase: "Vietnam", date: "21.11.2025", note: "Du Gia" }, 
+
+            { name: "Ha Giang - Loop Start/Ende", lat: 22.811999199152176, lon: 104.98030886187692, phase: "Vietnam", date: "18.11.2025 & 21.11.2025", note: "Start- und Endepunkt des Ha Giang Loop in Ha Giang" },
+          	{ name: "Hanoi - Transfer zum Ha Giang Loop", lat: 21.031970787461425, lon: 105.85601632416406, phase: "Vietnam", date: "17.11.2025 & 22.11.2025", note: "Hier ist der Abreise und Ankunftpunkt für den Ha Giang Loop" },
+          
+            { name: "Hanoi - 3 Nächte", lat: 21.034710349749567, lon: 105.85101589269553, phase: "Vietnam", date: "22.11.2025 - 25.11.2025", note: "Unterkunft: Old Quarter View Hanoi Hostel" },
+            { name: "Tagesausflug Ninh Binh", lat: 20.2500, lon: 105.9745, phase: "Vietnam", date: "24.11.2025", note: "Tam Coc / Mua Cave" },
+            { name: "Hanoi - 3 Nächte", lat: 21.034710349749567, lon: 105.85101589269553, phase: "Vietnam", date: "22.11.2025 - 25.11.2025", note: "Unterkunft: Old Quarter View Hanoi Hostel" },
+          
+            { name: "Bai Tu Long Bay - Kreuzfahrt (2 Nächte)", lat: 20.925706042768198, lon: 107.25468574727046, phase: "Vietnam", date: "25.11.2025 - 27.11.2025", note: "2 Nächte auf einem Schiff" },
+            { name: "Hanoi - 3 Nächte", lat: 21.034710349749567, lon: 105.85101589269553, phase: "Vietnam", date: "22.11.2025 - 25.11.2025", note: "Unterkunft: Old Quarter View Hanoi Hostel" },
+            { name: "Hanoi - Ankunft Flughafen", lat: 21.215124876585346, lon: 105.7917607470519, phase: "Vietnam", date: "17.11.2025", note: "" },
+       
+            { name: "Reise nach Ho-Chi-Minh-Stadt", lat: 10.816729046483117, lon: 106.65727583494895, phase: "Anreise", date: "29.11.2025", note: "Inlandsflug nach SGN (nur Pfad)" },
+            { name: "Flughafen Tan-Son-Nhat", lat: 10.816750103948724, lon: 106.65590252276313, phase: "Vietnam", date: "05.12.2025", note: "Nachtflug SGN 23:55 → NRT" }, 
+            { name: "Ho-Chi-Minh-Stadt", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "bis 04.12.2025", note: "Abflug von der Hauptstatt Vietnams am 05.12.2025" },
             { name: "Mekong-Delta (Tagesausflug)", lat: 10.0452, lon: 105.7715, phase: "Vietnam", date: "01.12.2025", note: "Mekong-Delta Tagestour" },
-            { name: "Ho-Chi-Minh-Stadt - normal", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "02.12.2025", note: "HCMC - Freizeit" },
-            { name: "HCMC - Abreisevorbereitung", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "03.12.2025", note: "Packen, Checklisten" },
-            { name: "HCMC - Puffertag", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "04.12.2025", note: "Reserve / Puffer" },
-            { name: "HCMC (Abflug nach Tokio)", lat: 10.7629, lon: 106.6606, phase: "Anreise", date: "05.12.2025", note: "Nachtflug SGN 23:55 → NRT (nur Pfad)" }, 
+            { name: "Ho-Chi-Minh-Stadt", lat: 10.7769, lon: 106.7009, phase: "Vietnam", date: "bis 04.12.2025", note: "Abflug von der Hauptstatt Vietnams am 05.12.2025" },
+            { name: "Flughafen Tan-Son-Nhat", lat: 10.816750103948724, lon: 106.65590252276313, phase: "Vietnam", date: "05.12.2025", note: "Nachtflug SGN 23:55 → NRT" }, 
+            { name: "HCMC (Abflug nach Tokio)", lat: 10.816750103948724, lon: 106.65590252276313, phase: "Anreise", date: "05.12.2025", note: "Nachtflug SGN 23:55 → NRT (nur Pfad)" }, 
+          
             { name: "Tokio (Ankunft NRT)", lat: 35.7719, lon: 140.3929, phase: "Japan", date: "06.12.2025", note: "Ankunft NRT 07:35 · Asakusa / Ueno" },
             { name: "Tokio - Tag 2", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "07.12.2025", note: "Tokio erkunden" },
             { name: "Nikkō (Tagesausflug)", lat: 36.7199, lon: 139.6983, phase: "Japan", date: "08.12.2025", note: "Toshogu-Schrein & Natur" },
+            { name: "Tokio - Tag 2", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "07.12.2025", note: "Tokio erkunden" },
+            { name: "Nagano / Yudanaka", lat: 36.6486, lon: 138.1948, phase: "Japan", date: "09.12.2025", note: "Jigokudani / Schneeaffen" },
+            { name: "Yudanaka", lat:  36.74172951501285, lon: 138.41497914301252, phase: "Japan", date: "09.12.2025", note: "Jigokudani / Schneeaffen" },
             { name: "Nagano / Yudanaka", lat: 36.6486, lon: 138.1948, phase: "Japan", date: "09.12.2025", note: "Jigokudani / Schneeaffen" },
             { name: "Matsumoto", lat: 36.2381, lon: 137.9717, phase: "Japan", date: "10.12.2025", note: "Matsumoto-Schloss" },
             { name: "Takayama", lat: 36.1456, lon: 137.2520, phase: "Japan", date: "11.12.2025", note: "Altstadt & Markt" },
             { name: "Shirakawa-go", lat: 36.2706, lon: 136.8996, phase: "Japan", date: "12.12.2025", note: "Gassho-Zukuri Bauernhäuser" },
             { name: "Kanazawa", lat: 36.5613, lon: 136.6562, phase: "Japan", date: "13.12.2025", note: "Kenroku-en Garten, Samuraiviertel" },
             { name: "Kanazawa / Noto (optional)", lat: 37.4560, lon: 137.3618, phase: "Japan", date: "14.12.2025", note: "Noto-Halbinsel (Küste) optional" },
+            { name: "Kanazawa", lat: 36.5613, lon: 136.6562, phase: "Japan", date: "13.12.2025", note: "Kenroku-en Garten, Samuraiviertel" },
             { name: "Kyoto (Teil I)", lat: 35.0116, lon: 135.7681, phase: "Japan", date: "15.12.2025", note: "Kyoto - Fushimi Inari, Gion" },
             { name: "Kyoto (Teil II)", lat: 35.0116, lon: 135.7681, phase: "Japan", date: "16.12.2025", note: "Kyoto - Philosophenweg & Tempel" },
             { name: "Nara (Tagesausflug)", lat: 34.6851, lon: 135.8048, phase: "Japan", date: "17.12.2025", note: "Todai-ji & Hirschpark" },
@@ -135,8 +152,11 @@
             { name: "Osaka", lat: 34.6937, lon: 135.5023, phase: "Japan", date: "19.12.2025", note: "Dotonbori, Streetfood" },
             { name: "Tokio (Rückkehr)", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "20.12.2025", note: "Shinkansen zurück nach Tokio" },
             { name: "Tokio - Abschiedstag", lat: 35.6762, lon: 139.6503, phase: "Japan", date: "21.12.2025", note: "Letzte Einkäufe & Packen" },
+            { name: "Tokio (Abflug HND)", lat: 35.5494, lon: 139.7798, phase: "Japan", date: "22.12.2025", note: "Abflug HND 21:00 → MUC" }, 
+          
             { name: "Tokio (Abflug HND)", lat: 35.5494, lon: 139.7798, phase: "Japan", date: "22.12.2025", note: "Abflug HND 21:00 → MUC (nur Pfad)" }, 
-            { name: "Peking (Zwischenstopp)", lat: 39.9042, lon: 116.4074, phase: "Rueckflug", date: "22.12.2025", note: "Zwischenstopp PEK (nur Pfad)" },
+            { name: "Peking (Zwischenstopp)", lat: 39.9042, lon: 116.4074, phase: "Rueckflug", date: "22.12.2025", note: "Zwischenstopp PEK (nur Pfad)" },      
+            { name: "Peking (Zwischenstopp)", lat: 39.9042, lon: 116.4074, phase: "Rueckflug", date: "22.12.2025", note: "Zwischenstopp PEK" },
             { name: "München (Ankunft)", lat: 48.36958861586051, lon: 11.811849615397932, phase: "Rueckflug", date: "23.12.2025", note: "Ankunft MUC" }
         ];
 
@@ -326,4 +346,3 @@ viewer.camera.flyTo({
     </script>
 </body>
 </html>
-
