@@ -75,7 +75,7 @@
 
         // A) OpenStreetMap Standard (Basis)
         imageryViewModels.push(new Cesium.ProviderViewModel({
-            name: 'OSM Standard',
+            name: 'OSM DE',
             iconUrl: Cesium.buildModuleUrl('Widgets/Images/ImageryProviders/openStreetMap.png'),
             tooltip: 'Standard-Ansicht von OpenStreetMap.de',
             creationFunction: function() {
@@ -85,9 +85,23 @@
             }
         }));
 
-        // B) Humanitarian (HOT)
+        // E) NEU: Lokaliserte OSM-Layer (OSM-Français wird oft lokal angezeigt, inkl. Deutsch)
         imageryViewModels.push(new Cesium.ProviderViewModel({
-            name: 'Humanitär (HOT)',
+            name: 'OSM DE2',
+            iconUrl: Cesium.buildModuleUrl('Widgets/Images/ImageryProviders/openStreetMap.png'),
+            tooltip: 'OpenStreetMap mit lokalisierten Beschriftungen (z.B. Deutsch in DE/AT/CH)',
+            creationFunction: function() {
+                return new Cesium.UrlTemplateImageryProvider({
+                    url: 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+                    subdomains: ['a', 'b', 'c'],
+                    credit: '© OpenStreetMap contributors, OSM-Fr'
+                });
+            }
+        }));
+
+         // B) Humanitarian (HOT)
+        imageryViewModels.push(new Cesium.ProviderViewModel({
+            name: 'Humanitär',
             iconUrl: Cesium.buildModuleUrl('Widgets/Images/ImageryProviders/openStreetMap.png'),
             tooltip: 'Kartenstil des Humanitarian OpenStreetMap Teams',
             creationFunction: function() {
@@ -116,7 +130,7 @@
 
         // D) CyclOSM (Radfahrerkarte)
         imageryViewModels.push(new Cesium.ProviderViewModel({
-            name: 'CyclOSM (Fahrrad)',
+            name: 'CyclOSM',
             iconUrl: Cesium.buildModuleUrl('Widgets/Images/ImageryProviders/openStreetMap.png'),
             tooltip: 'Fahrrad-spezifische Karte',
             creationFunction: function() {
@@ -126,11 +140,8 @@
                     credit: '© OpenStreetMap contributors, CyclOSM'
                 });
             }
-        }));
+        })); 
 
-      
-      
-      
       
       
       
